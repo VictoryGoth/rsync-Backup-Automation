@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.backuptoarchive</string>
+
+    <!-- Open Terminal and run the script -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/open</string>
+        <string>-a</string>
+        <string>Terminal</string>
+        <string>/Users/yourusername/backup-to-archive.sh</string>
+    </array>
+
+    <!-- Monitor the drive mount point -->
+    <key>WatchPaths</key>
+    <array>
+        <string>/Volumes/YourArchiveDrive</string>
+        <string>/Volumes/VolumeUIDDGoesHere</string>
+
+    </array>
+
+    <key>StartOnMount</key>
+    <true/>
+
+    <!-- Optional: Keep script alive -->
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>
