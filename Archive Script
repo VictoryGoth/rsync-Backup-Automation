@@ -3,6 +3,9 @@
 # Define the archive drive path
 ARCHIVE_DRIVE="/Volumes/YourArchiveDrive"
 
+# macOS notification for script start
+osascript -e 'display notification "Backup process started!" with title "Backup to YourArchiveDrive"'
+
 # Check if the archive drive is mounted
 if [ ! -d "$ARCHIVE_DRIVE" ]; then
     echo "Error: Archive drive not mounted at $ARCHIVE_DRIVE"
@@ -14,5 +17,9 @@ rsync -av --progress ~/Documents/ "$ARCHIVE_DRIVE/Documents/"
 rsync -av --progress ~/Pictures/ "$ARCHIVE_DRIVE/Pictures/"
 rsync -av --progress ~/Videos/ "$ARCHIVE_DRIVE/Videos/"
 rsync -av --progress ~/Projects/ "$ARCHIVE_DRIVE/Projects/"
+done
+
+# macOS notification for successful completion
+osascript -e 'display notification "Backup completed successfully!" with title "Backup to YourArchiveDrive"'
 
 echo "Backup completed successfully!"
