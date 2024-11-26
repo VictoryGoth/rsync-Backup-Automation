@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Define the archive drive path
+ARCHIVE_DRIVE="/Volumes/YourArchiveDrive"
+
+# macOS notification for script start
+osascript -e 'display notification "Backup process started!" with title "Backup to YourArchiveDrive"'
+
+# Check if the archive drive is mounted
+if [ ! -d "$ARCHIVE_DRIVE" ]; then
+    echo "Error: Archive drive not mounted at $ARCHIVE_DRIVE"
+    exit 1
+fi
+
+# Declare the source-destination pairs directly in the loop
+for SOURCE in "/Users/yourusername/Documents" \
+              "/Users/yourusername/Pictures" \
+              "/Users/yourusername/Videos" \
+              "/Users/yourusername/Projects"; do
+    # Set destination based on the source
+    case "$SOURCE" in
+        "/Users/yourusername/Documents/")
+            DESTINATION="$ARCHIVE_DRIVE/Documents"
+            ;;
+        "/Users/yourusername/Documents/Pictures")
+            DESTINATION="$ARCHIVE_DRIVE/Pictures"
+            ;;
+        "/Users/yourusername/Documents/Videos")
+            DESTINATION="$ARCHIVE_DRIVE/Videos"
+            ;;
+        "/Users/yourusername/Downloads")
+            DESTINATION="$ARCHIVE_DRIVE/Projects"
+            ;;
+        *)
+            echo "Error: Unknown source directory $SOURCE"
+            continue
+            ;;
+    esac
+
+    # Debugging: Print the source and destination before running rsync
+    echo "Syncing '$SOURCE' to '$DESTINATION'"
+
+    # Check if the source directory exists
+    if [ ! -d "$SOURCE" ]; then
+        echo "Error: Source directory '$SOURCE' does not exist."
+        continue
+    fi
+
+    # Check if the destination directory exists
+    if [ ! -d "$DESTINATION" ]; then
+        echo "Error: Destination directory '$DESTINATION' does not exist."
+        continue
+    fi
+
+    # Run rsync to sync files
+    rsync -av --progress --update "$SOURCE/" "$DESTINATION/"
+done
+
+# macOS notification for successful completion
+osascript -e 'display notification "Backup completed successfully!" with title "Backup to YourArchiveDrive"'
+
+echo "Backup completed successfully!"
