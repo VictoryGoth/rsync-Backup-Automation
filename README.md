@@ -18,12 +18,11 @@ If it executes without any issues, move on to "Automate with LaunchAgent"
 The code for the LaunchAgent will open a new Terminal window so you can see exactly what it's doing. You can disable by removing all osascript lines.
 
 1. bash: diskutil info /Volumes/YourArchiveDrive | grep 'Volume UUID'
-   - If that doesn't show the Volume UIDD copy the code from **DiskUtil Info**
-2. Copy the Volume UIDD number and paste it somewhere where you can grab it again later.
+   - If that doesn't show the Volume UIDD either copy the code from **DiskUtil Info** or open the Disk Utility app and click "Info" on your volume.
+2. Copy the Volume UIDD number and paste it somewhere where you can grab it again later (or leave Dis Utility window open).
 3. Open Terminal and bash:
    - nano ~/Library/LaunchAgents/com.user.backuptoarchive.plist
 5. Copy and paste code from **LaunchAgent Script** and edit.
 
 ### You're (hopefully) done! 
 Test by unplugging your external drive then plug it back in.
-
