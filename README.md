@@ -4,8 +4,8 @@ This should automatically run an rsync backup whenever you mount an external dri
 ### Creating the backup script:
 1. In Terminal, bash:
    - nano ~/backup-to-archive.sh
-3. Copy and paste code from **Archive Script** and edit.
-   - If you have any issues running the script because it has issues finding any of your Finder paths, copy and paste code from **Archive Script File Path Fix** 
+3. Copy and paste code from **_Archive Script_** and edit.
+   - If you have any issues running the script because it has issues finding any of your Finder paths, copy and paste code from **_Archive Script File Path Fix_** 
 5. Save edits and Exit: Ctrl+0, Enter, Ctrl+X
 
 ### Make the script executable:
@@ -22,7 +22,7 @@ The code for the LaunchAgent will open a new Terminal window so you can see exac
 2. Copy the Volume UIDD number and paste it somewhere where you can grab it again later (or leave Dis Utility window open).
 3. Open Terminal and bash:
    - nano ~/Library/LaunchAgents/com.user.backuptoarchive.plist
-5. Copy and paste code from **LaunchAgent Script** and edit.
+5. Copy and paste code from **_LaunchAgent Script_** and edit.
 
 ### You're (hopefully) done! 
 Test by unplugging your external drive then plug it back in.
