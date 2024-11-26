@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Define the archive drive path
+ARCHIVE_DRIVE="/Volumes/YourArchiveDrive"
+
+# Check if the archive drive is mounted
+if [ ! -d "$ARCHIVE_DRIVE" ]; then
+    echo "Error: Archive drive not mounted at $ARCHIVE_DRIVE"
+    exit 1
+fi
+
+# Sync each folder
+rsync -av --progress ~/Documents/ "$ARCHIVE_DRIVE/Documents/"
+rsync -av --progress ~/Pictures/ "$ARCHIVE_DRIVE/Pictures/"
+rsync -av --progress ~/Videos/ "$ARCHIVE_DRIVE/Videos/"
+rsync -av --progress ~/Projects/ "$ARCHIVE_DRIVE/Projects/"
+
+echo "Backup completed successfully!"
